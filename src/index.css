@@ -1,0 +1,16 @@
+.card-array {
+    border: 1px solid red;
+    width: 100vw;
+    padding: 0;
+    display: flex;
+    overflow-x: scroll;
+    gap: 20px;
+    height: 400px;
+
+}
+.card-image {
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 5px;
+    min-width: 350px;
+
+}
