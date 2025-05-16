@@ -14,7 +14,8 @@ export const initialStore=()=>{
       }
     ],
     urlBaseStarWars: "https://www.swapi.tech/api/",
-    starWarsCharacters: []
+    starWarsCharacters: [],
+    favorites: []
   }
 }
 
@@ -32,6 +33,11 @@ export default function storeReducer(store, action = {}) {
         return{
           ...store,
           starWarsCharacters: action.payload
+        };
+      case "ADD_FAVORITES":
+        return{
+          ...store,
+          favorites: [...store.favorites, action.payload]
         }
     default:
       throw Error('Unknown action.');

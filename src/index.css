@@ -1,16 +1,23 @@
 .card-array {
-    border: 1px solid red;
     width: 100vw;
     padding: 0;
     display: flex;
     overflow-x: scroll;
     gap: 20px;
-    height: 400px;
+
 
 }
 .card-image {
     border: 1px solid rgb(212, 211, 211);
     border-radius: 5px;
     min-width: 350px;
-
+}
+.heart {
+    color: rgb(253, 211, 1);
+}
+.number-gray {
+    border-radius: 5px;
+    padding: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
