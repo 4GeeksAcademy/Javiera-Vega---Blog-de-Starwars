@@ -4,20 +4,40 @@
     display: flex;
     overflow-x: scroll;
     gap: 20px;
-
-
 }
+
 .card-image {
     border: 1px solid rgb(212, 211, 211);
     border-radius: 5px;
     min-width: 350px;
 }
+
 .heart {
     color: rgb(253, 211, 1);
 }
+
 .number-gray {
     border-radius: 5px;
     padding: 5px;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.menu {
+    background-color: white;
+}
+
+.cont-inf {
+    border-top: 1px solid red;
+    margin-top: 20px;
+
+}
+
+.cont-description {
+    margin-top: 20px;
+    color: red;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
 }

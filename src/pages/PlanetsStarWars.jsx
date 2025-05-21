@@ -2,28 +2,28 @@ import { useEffect, } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
 
-export const CharacterStarWars = () => {
+export const PlanetsStarWars = () => {
 
     const { store, dispatch } = useGlobalReducer()
-    const { starWarsCharacters } = store
+    const { planets } = store
 
-    const getAllCharacters = async () => {
+    const getAllplanets = async () => {
         try {
-            const response = await fetch(`${store.urlBaseStarWars}/people`)
+            const response = await fetch(`${store.urlBaseStarWars}/planets`)
             const data = await response.json()
 
-            const people = await Promise.all(
-                data.results.map(async (person) => {
-                    const res = await fetch(person.url)
+            const planet = await Promise.all(
+                data.results.map(async (item) => {
+                    const res = await fetch(item.url)
                     const detail = await res.json()
                     return detail.result
                 })
             )
-            localStorage.setItem("starWarsCharacters", JSON.stringify(people))
-            console.log(people)
+            localStorage.setItem("planets", JSON.stringify(planet))
+            console.log(planet)
             dispatch({
-                type: "ADD_CHARACTERS",
-                payload: people
+                type: "ADD_PLANETS",
+                payload: planet
             })
 
         } catch (error) {
@@ -32,7 +32,7 @@ export const CharacterStarWars = () => {
     }
 
     useEffect(() => {
-        getAllCharacters()
+        getAllplanets()
     }, [])
 
     const handleClick = (data) => {
@@ -46,36 +46,35 @@ export const CharacterStarWars = () => {
         <div className="container p-0">
             <div className="row col-12">
                 <div className="text-start mt-5 text-danger p-0">
-                    <h1>Character</h1>
+                    <h1>Planets</h1>
                 </div>
                 <div className="card-array ">
                     {
-                        starWarsCharacters.map((person) => {
+                        planets.map((item) => {
                             return (
                                 <div
-                                    key={person._id}
+                                    key={item._id}
                                     className="card-image h-100vh">
                                     <img
-                                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/people/${person.uid}.jpg`}
-                                        alt="image-person"
+                                        src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/planets/${item.uid}.jpg`}
+                                        alt="image-planet"
                                         className="w-100 "
                                     />
                                     <div className="card-body p-3">
-                                        <h5 className="card-title pb-3">{person.properties.name}</h5>
-                                        <p className="card-text mb-0">Gender: {person.properties.gender}</p>
-                                        <p className="card-text mb-0">Hair color: {person.properties.hair_color}</p>
-                                        <p className="card-text mb-3">Eye color: {person.properties.eye_color}</p>
+                                        <h5 className="card-title pb-3">{item.properties.name}</h5>
+                                        <p className="card-text mb-0">Gender: {item.properties.population}</p>
+                                        <p className="card-text mb-3">Hair color: {item.properties.terrain}</p>
                                         <div className="d-flex justify-content-between">
                                             <Link
-                                                to={`/star-wars-detail/${person._id}`}
+                                                to={`/planets-detail/${item._id}`}
                                                 className="btn btn-primary">
                                                 Learn more!
                                             </Link>
                                             <button
                                                 className="btn btn-outline-warning"
-                                                onClick={() => handleClick(person)}>
+                                                onClick={() => handleClick(item)}>
                                                 {
-                                                    store.favorites.includes(person) ?
+                                                    store.favorites.includes(item) ?
                                                         <i className="fa-solid fa-heart"></i> :
                                                         <i className="heart fa-regular fa-heart"></i>
                                                 }
