@@ -35,11 +35,19 @@ export const PlanetsStarWars = () => {
         getAllplanets()
     }, [])
 
-    const handleClick = (data) => {
-        dispatch({
-            type: "ADD_FAVORITES", payload: data
+    const handleClick = (element) => {
 
-        })
+        const planetFav = store.favorites.find(item => item._id === element._id);
+
+        if (planetFav) {
+            dispatch({
+                type: "DELETE_FAVORITES", payload: element._id
+            })
+        } else {
+            dispatch({
+                type: "ADD_FAVORITES", payload: element
+            })
+        }
     }
 
     return (

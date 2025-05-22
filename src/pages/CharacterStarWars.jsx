@@ -35,11 +35,19 @@ export const CharacterStarWars = () => {
         getAllCharacters()
     }, [])
 
-    const handleClick = (data) => {
-        dispatch({
-            type: "ADD_FAVORITES", payload: data
+    const handleClick = (person) => {
 
-        })
+        const personFav = store.favorites.find(item => item._id === person._id);
+
+        if (personFav) {
+            dispatch({
+                type: "DELETE_FAVORITES", payload: person._id
+            });
+        } else {
+            dispatch({
+                type: "ADD_FAVORITES", payload: person
+            })
+        }
     }
 
     return (
